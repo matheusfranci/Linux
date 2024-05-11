@@ -1,0 +1,161 @@
+No linux o diretório / equivale ao C: do windows, lembrando que dentro do /bin tudo equivale a um arquivo .exe
+Para verificar basta executar os comandos abaixo:
+
+which cd
+/bin/cd
+
+which vi
+/bin/vi
+
+which ls
+/bin/ls
+____________________________________________________________________________________________________________________
+
+Dentro do diretório /boot estão todos os arquivos e drivers que são carregados durante o processo de boot do SO
+     81 152K -rw-r--r--.  1 root root 151K Abr 24 13:06 config-3.10.0-1160.118.1.el7.x86_64
+     72 152K -rw-r--r--.  1 root root 150K Out 19  2020 config-3.10.0-1160.el7.x86_64
+     67    0 drwxr-xr-x.  3 root root   17 Mai 10 01:51 efi
+     68    0 drwxr-xr-x.  2 root root   27 Mai 10 01:52 grub
+1572928    0 drwx------.  5 root root   97 Mai 10 02:04 grub2
+     76  60M -rw-------.  1 root root  60M Mai 10 01:55 initramfs-0-rescue-06ac4b000b0bd34e93c31f095dca14aa.img
+     84  21M -rw-------.  1 root root  21M Mai 10 02:05 initramfs-3.10.0-1160.118.1.el7.x86_64.img
+     85  14M -rw-------.  1 root root  14M Mai 11 03:13 initramfs-3.10.0-1160.118.1.el7.x86_64kdump.img
+     75  21M -rw-------.  1 root root  21M Mai 10 02:05 initramfs-3.10.0-1160.el7.x86_64.img
+     78  14M -rw-------.  1 root root  14M Mai 10 02:03 initramfs-3.10.0-1160.el7.x86_64kdump.img
+     82 316K -rw-r--r--.  1 root root 314K Abr 24 13:06 symvers-3.10.0-1160.118.1.el7.x86_64.gz
+     73 316K -rw-r--r--.  1 root root 314K Out 19  2020 symvers-3.10.0-1160.el7.x86_64.gz
+     80 3,5M -rw-------.  1 root root 3,5M Abr 24 13:06 System.map-3.10.0-1160.118.1.el7.x86_64
+     71 3,5M -rw-------.  1 root root 3,5M Out 19  2020 System.map-3.10.0-1160.el7.x86_64
+     77 6,5M -rwxr-xr-x.  1 root root 6,5M Mai 10 01:55 vmlinuz-0-rescue-06ac4b000b0bd34e93c31f095dca14aa
+     83 6,8M -rwxr-xr-x.  1 root root 6,8M Abr 24 13:06 vmlinuz-3.10.0-1160.118.1.el7.x86_64
+     79 4,0K -rw-r--r--.  1 root root  173 Abr 24 13:06 .vmlinuz-3.10.0-1160.118.1.el7.x86_64.hmac
+     74 6,5M -rwxr-xr-x.  1 root root 6,5M Out 19  2020 vmlinuz-3.10.0-1160.el7.x86_64
+     70 4,0K -rw-r--r--.  1 root root  167 Out 19  2020 .vmlinuz-3.10.0-1160.el7.x86_64.hmac
+____________________________________________________________________________________________________________________
+O /dev armazena dos dispositivos, inclusive dev significa device. Sempre que plugamos um mouse, teclado, usb em gerais é criado uma entrada no /dev
+Ao utilizar o comando ls nota-se os devices de nossa midia de armazenamento
+ 8141 0 brw-rw----.  1 root disk      8,   0 Mai 11 03:27 sda
+ 8142 0 brw-rw----.  1 root disk      8,   1 Mai 11 03:27 sda1
+ 8143 0 brw-rw----.  1 root disk      8,   2 Mai 11 03:27 sda2
+
+OBS: Raramente realizaremos alguma manutenção nesse diretório, ele é gerenciado por um daemon chamado udev
+____________________________________________________________________________________________________________________
+Dentro do diretório /etc/ estão armazenados muitos arquivos relacionados a configurações 
+Quando instalamos um programa em via de regra o programa cria uma pasta dentro do /etc/ e armazena nessa pasta do programa as configurações.
+
+____________________________________________________________________________________________________________________
+No diretório /Home estão os usuários, segue exemplo de home de usuário
+ls -lisah /home/
+drwx------.  2 db   db    83 Mai 10 02:07 db
+
+____________________________________________________________________________________________________________________
+Os diretórios /lib e /lib64 são onde ficam armazenados os arquivos equivalentes as dll's do windows mas nesse caso as extensões são sso ou o
+
+OBS: Sempre que instalamos um software as bibliotecas deles são distribuidas dentro dessas partições. A /lib64 armazena as bibliotecas para a arquitetura 64 e a /lib para outras arquiteturas
+
+____________________________________________________________________________________________________________________
+O /media é onde são montados os pen drives por exemplo. A diferença dele para o /dev é que no /dev estão os devices e lá não conseguimos escrever, já no /media temos o ponto de montagem onde possibilita a escrita.
+
+____________________________________________________________________________________________________________________
+O /mnt é similar ao /media mas ele serve para a montagem de dispositivos temporários
+
+____________________________________________________________________________________________________________________
+/opt significa optional, nele instalamos qualquer pacote externo que não é instalado pelo repositório de pacotes da distro 
+
+____________________________________________________________________________________________________________________
+/proc é um pseudo sistema de arquivos, nele podemos obter informações sobre o hardware do equipamento
+segue exemplo de arquivo do proc com informações de cpu por exemplo.
+
+cat /proc/cpuinfo
+processor       : 0
+vendor_id       : GenuineIntel
+cpu family      : 6
+model           : 140
+model name      : 11th Gen Intel(R) Core(TM) i5-1135G7 @ 2.40GHz
+stepping        : 1
+microcode       : 0xffffffff
+cpu MHz         : 2419.210
+cache size      : 8192 KB
+
+OBS: cada diretório numérico do /proc é um PID de processo
+
+        64 0 dr-xr-xr-x.  17 root    root     224 Mai 10 01:56 ..
+      7185 0 dr-xr-xr-x.   9 root    root       0 Mai 11 03:27 1
+      9707 0 dr-xr-xr-x.   9 root    root       0 Mai 11 03:27 10
+      9740 0 dr-xr-xr-x.   9 root    root       0 Mai 11 03:27 101
+     30109 0 dr-xr-xr-x.   9 root    root       0 Mai 11 03:58 10306
+      9708 0 dr-xr-xr-x.   9 root    root       0 Mai 11 03:27 11
+     30110 0 dr-xr-xr-x.   9 root    root       0 Mai 11 03:58 11171
+      9709 0 dr-xr-xr-x.   9 root    root       0 Mai 11 03:27 12
+     29262 0 dr-xr-xr-x.   9 root    root       0 Mai 11 04:01 12281
+     30769 0 dr-xr-xr-x.   9 db      db         0 Mai 11 04:01 12321
+     30770 0 dr-xr-xr-x.   9 root    root       0 Mai 11 04:01 12322
+      9710 0 dr-xr-xr-x.   9 root    root       0 Mai 11 03:27 13
+      9711 0 dr-xr-xr-x.   9 root    root       0 Mai 11 03:27 14
+     18354 0 dr-xr-xr-x.   9 db      db         0 Mai 11 03:28 1417
+     18347 0 dr-xr-xr-x.   9 root    root       0 Mai 11 03:28 1437
+     17314 0 dr-xr-xr-x.   9 root    root       0 Mai 11 03:28 1441
+     30101 0 dr-xr-xr-x.   9 root    root       0 Mai 11 03:58 1442
+     30102 0 dr-xr-xr-x.   9 root    root       0 Mai 11 03:58 1463
+      9713 0 dr-xr-xr-x.   9 root    root       0 Mai 11 03:27 16
+     30103 0 dr-xr-xr-x.   9 root    root       0 Mai 11 03:58 1618
+     18683 0 dr-xr-xr-x.   9 root    root       0 Mai 11 03:30 1665
+     18713 0 dr-xr-xr-x.   9 root    root       0 Mai 11 03:30 1669
+
+Para descobrir o pid de um processo basta digitar o comando pgrep _ nome do programa. Exemplo pgrep sshd
+____________________________________________________________________________________________________________________
+/root nada mas é do que o /home especial para o usuário root
+
+____________________________________________________________________________________________________________________
+/run é onde ficam os arquivos temporários do que está sendo executado, assim como o /tmp
+Esses arquivos são iniciados junto com o boot
+14643 4,0K -rw-r--r--.  1 root   root      4 Mai 11 03:27 auditd.pid
+14927    0 drwxr-x---.  2 chrony chrony   80 Mai 11 03:29 chrony
+18601    0 drwxr-xr-x.  2 root   root     60 Mai 11 03:29 chrony-helper
+13962    0 drwxr-xr-x.  2 root   root     80 Mai 11 03:28 console
+15276 4,0K -rw-r--r--.  1 root   root      4 Mai 11 03:27 crond.pid
+15309    0 ----------.  1 root   root      0 Mai 11 03:27 cron.reboot
+13970    0 drwx------.  2 root   root     40 Mai 11 03:27 cryptsetup
+14742    0 drwxr-xr-x.  2 root   root     60 Mai 11 03:27 dbus
+18426 4,0K -rw-r--r--.  1 root   root      5 Mai 11 03:29 dhclient.pid
+10065    0 prw-------.  1 root   root      0 Mai 11 03:27 dmeventd-client
+10064    0 prw-------.  1 root   root      0 Mai 11 03:27 dmeventd-server
+15527    0 -rw-------.  1 root   root      0 Mai 11 03:27 ebtables.lock
+13958    0 drwxr-xr-x.  2 root   root     40 Mai 11 03:27 faillock
+15488    0 drwxr-x---.  2 root   root     40 Mai 11 03:27 firewalld
+ 7418    0 drwxr-xr-x.  4 root   root    120 Mai 11 03:27 initramfs
+ 7423    0 drwxr-xr-x.  5 root   root    120 Mai 11 03:27 lock
+ 7426    0 drwxr-xr-x.  3 root   root     60 Mai 11 03:27 log
+10060    0 drwx------.  3 root   root    100 Mai 11 03:27 lvm
+12848 4,0K -rw-r--r--.  1 root   root      4 Mai 11 03:27 lvmetad.pid
+ 7450    0 drwxr-xr-x.  2 root   root     40 Mai 11 03:27 mount
+13961    0 drwxrwxr-x.  2 root   root     40 Mai 11 03:27 netreport
+16399    0 drwxr-xr-x.  3 root   root     60 Mai 11 03:27 NetworkManager
+ 7996    0 drwxr-xr-x.  2 root   root     40 Mai 11 03:27 plymouth
+14621    0 drwxr-xr-x.  2 root   root     40 Mai 11 03:27 sepermit
+13966    0 drwxr-xr-x.  2 root   root     40 Mai 11 03:27 setrans
+17694 4,0K -rw-r--r--.  1 root   root      4 Mai 11 03:27 sshd.pid
+13968    0 drwx--x--x.  3 root   root     60 Mai 11 03:27 sudo
+17662 4,0K -rw-------.  1 root   root      3 Mai 11 03:27 syslogd.pid
+ 7210    0 drwxr-xr-x. 18 root   root    440 Mai 11 03:27 systemd
+ 8306    0 drwxr-xr-x.  2 root   root     60 Mai 11 03:27 tmpfiles.d
+13959    0 drwxr-xr-x.  2 root   root     60 Mai 11 03:27 tuned
+ 7466    0 drwxr-xr-x.  7 root   root    160 Mai 11 03:28 udev
+13957    0 drwxr-xr-x.  4 root   root     80 Mai 11 04:01 user
+13964 4,0K -rw-rw-r--.  1 root   utmp   1,5K Mai 11 03:30 utmp
+15495    0 -rw-------.  1 root   root      0 Mai 11 03:27 xtables.lock
+
+____________________________________________________________________________________________________________________
+/sbin também armazena binários mas apenas do sistema, por isso o s na frente da palavra bin, significa system binaries.
+
+____________________________________________________________________________________________________________________
+/sys é similar ao /proc, nele temos informações de hardware, drives e módulos por exemplo. É utilizado para o gerenciamento interno.
+
+____________________________________________________________________________________________________________________
+/usr é parecido com o opt e é usado para a mesma finalidade com a diferença de que o usr pode segregar a instalação para usuário especifico
+
+____________________________________________________________________________________________________________________
+/var é um diretório utilizado para muitas coisas então segue as subpartições mais utilizadas e sua finalidade
+
+/var/log - Aramazenamento de log
+/var/spool - Utilizado para spool
