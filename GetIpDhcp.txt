@@ -1,2 +1,6 @@
 ##Buscando um ip dhcp para conectar na internet
 dhclient -v enp0s3
+
+/*
+O comando dhclient é utilizado em sistemas operacionais baseados em Unix/Linux para obter automaticamente um endereço IP de um servidor DHCP (Dynamic Host Configuration Protocol). Quando um dispositivo está configurado para usar DHCP, ele pode enviar uma solicitação para um servidor DHCP na rede local, requisitando um endereço IP disponível. O comando dhclient é usado para iniciar esse processo de solicitação e obter um endereço IP, bem como outras informações de configuração de rede, como o endereço do servidor DNS e a máscara de sub-rede.
+*/
