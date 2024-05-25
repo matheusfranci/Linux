@@ -1,0 +1,18 @@
+-- Acesse o arquivo abaixo como root
+vi /etc/hosts
+
+-- Mude a última linha
+127.0.1.1	nome_antigo -- mude para o novo nome
+127.0.1.1   novo_nome
+
+-- verifique o nome
+hostnamectl
+
+-- Configure o novo nome 
+hostname novo_nome
+
+-- Definindo como static_name
+hostnamectl set-hostname new-hostname
+
+-- Reinicie o sistema
+reboot
