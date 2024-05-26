@@ -1,0 +1,5 @@
+sysctl -a | grep swapp
+
+vm swappiness
+
+vmstat 2 10
